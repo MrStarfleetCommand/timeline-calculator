@@ -19,12 +19,12 @@ form.addEventListener('submit', event => {
 	event.preventDefault();
 	const formData = new FormData(form);
 	const qualification = formData.get('qualification');
-	const diff = formData.get('diff');
+	const diff = Number(formData.get('diff'));
 	const step = formData.get('step');
 	const dir = formData.get('dir');
-	const year = formData.get('year');
-	const month = formData.get('month');
-	const day = formData.get('day');
+	const year = Number(formData.get('year'));
+	const month = Number(formData.get('month'));
+	const day = Number(formData.get('day'));
 	const startingPoint = year + ((daysElapsedBy[month] + day) / 365);
 	let low;
 	let high;
