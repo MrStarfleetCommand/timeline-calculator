@@ -13,8 +13,9 @@
 				<option value="approximately">About/Approximately</option>
 				<option value="nearly">Almost/Nearly</option>
 				<option value="more-than">Over/More than</option>
+				<option value="exactly">Exactly</option>
 			</select>
-			<input required type="number" name="diff" id="diff" min="1">
+			<input required type="number" name="diff" id="diff" min="0" step="any">
 			<select required name="step" id="step">
 				<option value="years">years</option>
 				<option value="months">months</option>
@@ -24,7 +25,9 @@
 				<option value="before">before</option>
 				<option value="after">after</option>
 			</select>
-			<input required type="date" name="starting-point" id="starting-point" value="2370-01-01">
+			<input required type="number" name="year" id="year" placeholder="YYYY" step="any">
+			<input required type="number" name="month" id="month" placeholder="MM" min="0" max="12">
+			<input required type="number" name="day" id="day" placeholder="DD" min="0" max="31">
 			<input type="submit" value="Submit" id="button">
 		</form>
 		<script src="script.js"></script>
