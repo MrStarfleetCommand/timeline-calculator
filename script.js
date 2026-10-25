@@ -72,12 +72,68 @@ form.addEventListener('submit', event => {
 				high = low;
 			}
 		} else if (step === 'months') {
-			
+			if (qualification === 'unqualified') {
+				
+			} else if (qualification === 'approximately') {
+				
+			} else if (qualification === 'nearly') {
+				
+			} else if (qualification === 'more-than') {
+				
+			} else {
+				
+			}
 		} else {
-			
+			if (qualification === 'unqualified') {
+				
+			} else if (qualification === 'approximately') {
+				
+			} else if (qualification === 'nearly') {
+				
+			} else if (qualification === 'more-than') {
+				
+			} else {
+				
+			}
 		}
 	} else {
-		
+		if (step === 'years') {
+			if (qualification === 'unqualified') {
+				
+			} else if (qualification === 'approximately') {
+				
+			} else if (qualification === 'nearly') {
+				
+			} else if (qualification === 'more-than') {
+				
+			} else {
+				
+			}
+		} else if (step === 'months') {
+			if (qualification === 'unqualified') {
+				
+			} else if (qualification === 'approximately') {
+				
+			} else if (qualification === 'nearly') {
+				
+			} else if (qualification === 'more-than') {
+				
+			} else {
+				
+			}
+		} else {
+			if (qualification === 'unqualified') {
+				
+			} else if (qualification === 'approximately') {
+				
+			} else if (qualification === 'nearly') {
+				
+			} else if (qualification === 'more-than') {
+				
+			} else {
+				
+			}
+		}
 	}
 
 	if (low) {
