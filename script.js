@@ -90,45 +90,32 @@ form.addEventListener('submit', event => {
 function getDate(yearStamp) {
 	const dayOfYear = ((yearStamp - Math.floor(yearStamp)) * 365) + 1;
 	let month;
-	let day;
 
 	if (dayOfYear > daysElapsedBy[12]) {
 		month = 12;
-		day = dayOfYear - daysElapsedBy[month];
 	} else if (dayOfYear > daysElapsedBy[11]) {
 		month = 11;
-		day = dayOfYear - daysElapsedBy[month];
 	} else if (dayOfYear > daysElapsedBy[10]) {
 		month = 10;
-		day = dayOfYear - daysElapsedBy[month];
 	} else if (dayOfYear > daysElapsedBy[9]) {
 		month = 9;
-		day = dayOfYear - daysElapsedBy[month];
 	} else if (dayOfYear > daysElapsedBy[8]) {
 		month = 8;
-		day = dayOfYear - daysElapsedBy[month];
 	} else if (dayOfYear > daysElapsedBy[7]) {
 		month = 7;
-		day = dayOfYear - daysElapsedBy[month];
 	} else if (dayOfYear > daysElapsedBy[6]) {
 		month = 6;
-		day = dayOfYear - daysElapsedBy[month];
 	} else if (dayOfYear > daysElapsedBy[5]) {
 		month = 5;
-		day = dayOfYear - daysElapsedBy[month];
 	} else if (dayOfYear > daysElapsedBy[4]) {
 		month = 4;
-		day = dayOfYear - daysElapsedBy[month];
 	} else if (dayOfYear > daysElapsedBy[3]) {
 		month = 3;
-		day = dayOfYear - daysElapsedBy[month];
 	} else if (dayOfYear > daysElapsedBy[2]) {
 		month = 2;
-		day = dayOfYear - daysElapsedBy[month];
 	} else {
 		month = 1;
-		day = dayOfYear;
 	}
 
-	return [Math.floor(yearStamp), month, day];
+	return [Math.floor(yearStamp), month, Math.round(dayOfYear - daysElapsedBy[month])];
 }
