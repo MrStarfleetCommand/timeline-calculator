@@ -40,7 +40,7 @@ form.addEventListener('submit', event => {
 	const year = Number(formData.get('year'));
 	const month = Number(formData.get('month'));
 	const day = Number(formData.get('day'));
-	const startingPoint = year + ((daysElapsedBy[month] + day - 1) / 365);
+	const startingPoint = makeYearStamp(year, month, day);
 	let low;
 	let high;
 
@@ -65,85 +65,58 @@ form.addEventListener('submit', event => {
 				low = startingPoint - diff + (1 / 365);
 				high = startingPoint - diff + 0.5;
 			} else if (qualification === 'more-than') {
-				low = startingPoint - diff - (1 / 365);
-				high = startingPoint - diff - 1 + (1 / 365);
+				low = startingPoint - diff - 1 + (1 / 365);
+				high = startingPoint - diff - (1 / 365);
 			} else {
 				low = startingPoint - diff;
 				high = low;
 			}
-		} else if (step === 'months') {
-			if (qualification === 'unqualified') {
-				
-			} else if (qualification === 'approximately') {
-				
-			} else if (qualification === 'nearly') {
-				
-			} else if (qualification === 'more-than') {
-				
-			} else {
-				
-			}
-		} else {
-			if (qualification === 'unqualified') {
-				
-			} else if (qualification === 'approximately') {
-				
-			} else if (qualification === 'nearly') {
-				
-			} else if (qualification === 'more-than') {
-				
-			} else {
-				
-			}
+		} else if (step === 'months' && qualification === 'unqualified') {
+			low = makeYearStamp(year - Math.floor((diff + 1) / 12), ((month - 1 - diff - 1) % 12) + 1, day + 1);
+			high = makeYearStamp(year - Math.floor((diff - 1) / 12), ((month - 1 - diff + 1) % 12) + 1, day - 1);
+		} else if (step === 'days') {
+			low = startingPoint - (diff / 365);
+			high = low;
 		}
 	} else {
 		if (step === 'years') {
 			if (qualification === 'unqualified') {
-				
+				low = startingPoint + diff - 0.5;
+				high = startingPoint + diff + 1 - (1 / 365);
 			} else if (qualification === 'approximately') {
-				
+				low = startingPoint + diff - 0.5;
+				high = startingPoint + diff + 0.5;
 			} else if (qualification === 'nearly') {
-				
+				low = startingPoint + diff - 0.5;
+				high = startingPoint + diff - (1 / 365);
 			} else if (qualification === 'more-than') {
-				
+				low = startingPoint + diff + (1 / 365);
+				high = startingPoint + diff + 1 - (1 / 365);
 			} else {
-				
+				low = startingPoint + diff;
+				high = low;
 			}
-		} else if (step === 'months') {
-			if (qualification === 'unqualified') {
-				
-			} else if (qualification === 'approximately') {
-				
-			} else if (qualification === 'nearly') {
-				
-			} else if (qualification === 'more-than') {
-				
-			} else {
-				
-			}
-		} else {
-			if (qualification === 'unqualified') {
-				
-			} else if (qualification === 'approximately') {
-				
-			} else if (qualification === 'nearly') {
-				
-			} else if (qualification === 'more-than') {
-				
-			} else {
-				
-			}
+		} else if (step === 'months' && qualification === 'unqualified') {
+			low = makeYearStamp(year + Math.floor((diff - 1) / 12), ((month - 1 + diff - 1) % 12) + 1, day + 1);
+			high = makeYearStamp(year + Math.floor((diff + 1) / 12), ((month - 1 + diff + 1) % 12) + 1, day - 1);
+		} else if (step === 'days') {
+			low = startingPoint + (diff / 365);
+			high = low;
 		}
 	}
 
 	if (low) {
-		low = getDate(low);
-		high = getDate(high);
+		low = makeYMD(low);
+		high = makeYMD(high);
 		alert(`Sometime between ${low[2]} ${monthName[low[1]]} ${low[0]} and ${high[2]} ${monthName[high[1]]} ${high[0]}`);
 	}
 });
 
-function getDate(yearStamp) {
+function makeYearStamp(year, month, day) {
+	return year + ((daysElapsedBy[month] + day - 1) / 365);
+}
+
+function makeYMD(yearStamp) {
 	const dayOfYear = ((yearStamp - Math.floor(yearStamp)) * 365) + 1;
 	let month;
 
