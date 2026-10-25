@@ -1,6 +1,21 @@
 const form = document.querySelector('form');
+const monthName = [
+	undefined,
+	'January',
+	'February',
+	'March',
+	'April',
+	'May',
+	'June',
+	'July',
+	'August',
+	'September',
+	'October',
+	'November',
+	'December',
+];
 const daysElapsedBy = [
-	0,
+	1,
 	0,
 	31,
 	31 + 28,
@@ -25,7 +40,7 @@ form.addEventListener('submit', event => {
 	const year = Number(formData.get('year'));
 	const month = Number(formData.get('month'));
 	const day = Number(formData.get('day'));
-	const startingPoint = year + ((daysElapsedBy[month] + day) / 365);
+	const startingPoint = year + ((daysElapsedBy[month] + day - 1) / 365);
 	let low;
 	let high;
 
@@ -64,4 +79,56 @@ form.addEventListener('submit', event => {
 	} else {
 		
 	}
+
+	if (low) {
+		low = getDate(low);
+		high = getDate(high);
+		alert(`Sometime between ${low[2]} ${monthName[low[1]]} ${low[0]} and ${high[2]} ${monthName[high[1]]} ${high[0]}`);
+	}
 });
+
+function getDate(yearStamp) {
+	const dayOfYear = ((yearStamp - Math.floor(yearStamp)) * 365) + 1;
+	let month;
+	let day;
+
+	if (dayOfYear > daysElapsedBy[12]) {
+		month = 12;
+		day = dayOfYear - daysElapsedBy[month];
+	} else if (dayOfYear > daysElapsedBy[11]) {
+		month = 11;
+		day = dayOfYear - daysElapsedBy[month];
+	} else if (dayOfYear > daysElapsedBy[10]) {
+		month = 10;
+		day = dayOfYear - daysElapsedBy[month];
+	} else if (dayOfYear > daysElapsedBy[9]) {
+		month = 9;
+		day = dayOfYear - daysElapsedBy[month];
+	} else if (dayOfYear > daysElapsedBy[8]) {
+		month = 8;
+		day = dayOfYear - daysElapsedBy[month];
+	} else if (dayOfYear > daysElapsedBy[7]) {
+		month = 7;
+		day = dayOfYear - daysElapsedBy[month];
+	} else if (dayOfYear > daysElapsedBy[6]) {
+		month = 6;
+		day = dayOfYear - daysElapsedBy[month];
+	} else if (dayOfYear > daysElapsedBy[5]) {
+		month = 5;
+		day = dayOfYear - daysElapsedBy[month];
+	} else if (dayOfYear > daysElapsedBy[4]) {
+		month = 4;
+		day = dayOfYear - daysElapsedBy[month];
+	} else if (dayOfYear > daysElapsedBy[3]) {
+		month = 3;
+		day = dayOfYear - daysElapsedBy[month];
+	} else if (dayOfYear > daysElapsedBy[2]) {
+		month = 2;
+		day = dayOfYear - daysElapsedBy[month];
+	} else {
+		month = 1;
+		day = dayOfYear;
+	}
+
+	return [Math.floor(yearStamp), month, day];
+}
