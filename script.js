@@ -117,7 +117,7 @@ function makeYearStamp(year, month, day) {
 }
 
 function makeYMD(yearStamp) {
-	const dayOfYear = ((yearStamp - Math.floor(yearStamp)) * 365) + 1;
+	const dayOfYear = Math.floor((yearStamp - Math.floor(yearStamp)) * 365) + 1;
 	let month;
 
 	if (dayOfYear > daysElapsedBy[12]) {
@@ -146,5 +146,5 @@ function makeYMD(yearStamp) {
 		month = 1;
 	}
 
-	return [Math.floor(yearStamp), month, Math.round(dayOfYear - daysElapsedBy[month])];
+	return [Math.floor(yearStamp), month, dayOfYear - daysElapsedBy[month]];
 }
