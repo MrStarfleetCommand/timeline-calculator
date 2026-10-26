@@ -146,5 +146,5 @@ function makeYMD(yearStamp) {
 		month = 1;
 	}
 
-	return [Math.floor(yearStamp), month, Math.floor(dayOfYear - daysElapsedBy[month])];
+	return [Math.floor(yearStamp), month, Math.round(dayOfYear - daysElapsedBy[month])];
 }
