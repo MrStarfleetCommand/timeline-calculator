@@ -72,8 +72,8 @@ form.addEventListener('submit', event => {
 				high = low;
 			}
 		} else if (step === 'months' && qualification === 'unqualified') {
-			low = makeYearStamp(year - Math.floor((diff + 1) / 12), ((month - 1 - diff - 1) % 12) + 1, day + 1);
-			high = makeYearStamp(year - Math.floor((diff - 1) / 12), ((month - 1 - diff + 1) % 12) + 1, day - 1);
+			low = makeYearStamp(year - Math.floor((diff - month + 1) / 12), ((month - 1 - diff - 1) % 12) + 1, day + 1);
+			high = makeYearStamp(year - Math.floor((diff - month - 1) / 12), ((month - 1 - diff + 1) % 12) + 1, day - 1);
 		} else if (step === 'days') {
 			low = startingPoint - (diff / 365);
 			high = low;
@@ -97,8 +97,8 @@ form.addEventListener('submit', event => {
 				high = low;
 			}
 		} else if (step === 'months' && qualification === 'unqualified') {
-			low = makeYearStamp(year + Math.floor((diff - 1) / 12), ((month - 1 + diff - 1) % 12) + 1, day + 1);
-			high = makeYearStamp(year + Math.floor((diff + 1) / 12), ((month - 1 + diff + 1) % 12) + 1, day - 1);
+			low = makeYearStamp(year + Math.floor((diff + month - 1) / 12), ((month - 1 + diff - 1) % 12) + 1, day + 1);
+			high = makeYearStamp(year + Math.floor((diff + month + 1) / 12), ((month - 1 + diff + 1) % 12) + 1, day - 1);
 		} else if (step === 'days') {
 			low = startingPoint + (diff / 365);
 			high = low;
