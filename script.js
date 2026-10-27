@@ -72,8 +72,8 @@ form.addEventListener('submit', event => {
 				high = low;
 			}
 		} else if (step === 'months' && qualification === 'unqualified') {
-			low = makeYearStamp(year - Math.floor((diff - month + 1) / 12), ((month - 1 - diff - 1) % 12) + 1, day + 1);
-			high = makeYearStamp(year - Math.floor((diff - month - 1) / 12), ((month - 1 - diff + 1) % 12) + 1, day - 1);
+			low = makeYearStamp(year - Math.floor((diff - month + 12 + 1) / 12), mod(month - 1 - diff - 1, 12) + 1, day + 1);
+			high = makeYearStamp(year - Math.floor((diff - month + 12 - 1) / 12), mod(month - 1 - diff + 1, 12) + 1, day - 1);
 		} else if (step === 'days') {
 			low = startingPoint - (diff / 365);
 			high = low;
@@ -97,8 +97,8 @@ form.addEventListener('submit', event => {
 				high = low;
 			}
 		} else if (step === 'months' && qualification === 'unqualified') {
-			low = makeYearStamp(year + Math.floor((diff + month - 1) / 12), ((month - 1 + diff - 1) % 12) + 1, day + 1);
-			high = makeYearStamp(year + Math.floor((diff + month + 1) / 12), ((month - 1 + diff + 1) % 12) + 1, day - 1);
+			low = makeYearStamp(year + Math.floor((diff + month - 1 - 1) / 12), mod(month - 1 + diff - 1, 12) + 1, day + 1);
+			high = makeYearStamp(year + Math.floor((diff + month - 1 + 1) / 12), mod(month - 1 + diff + 1, 12) + 1, day - 1);
 		} else if (step === 'days') {
 			low = startingPoint + (diff / 365);
 			high = low;
@@ -111,6 +111,10 @@ form.addEventListener('submit', event => {
 		alert(`Sometime between ${low[2]} ${monthName[low[1]]} ${low[0]} and ${high[2]} ${monthName[high[1]]} ${high[0]}`);
 	}
 });
+
+function mod(n, d) {
+	return ((n % d) + d) % d;
+}
 
 function makeYearStamp(year, month, day) {
 	return year + ((daysElapsedBy[month] + day - 1) / 365);
